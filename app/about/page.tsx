@@ -105,12 +105,24 @@ export default function About() {
           font-family: 'Cormorant Garamond', serif;
           font-size: clamp(3.5rem, 8vw, 7rem);
           font-weight: 300;
-          line-height: 0.95;
+          line-height: 1;
           color: var(--cream);
-          letter-spacing: -0.01em;
+          letter-spacing: 0;
         }
-        .page-title em {
+        /* "Tarika" — upright, tracked wide: elevated, editorial, intentional */
+        .page-title-first {
+          display: block;
+          font-weight: 400;
+          letter-spacing: 0.16em;
+          color: var(--cream);
+          margin-bottom: 0.14em;
+        }
+        /* "Campbell" — italic, lightly tracked: personal, expressive, balanced */
+        .page-title-last {
+          display: block;
           font-style: italic;
+          font-weight: 300;
+          letter-spacing: 0.06em;
           color: var(--gold-light);
         }
         .header-rule {
@@ -417,7 +429,10 @@ export default function About() {
         <div className="page-header">
           <div className="page-header-bg" />
           <p className="page-label">The Artist</p>
-          <h1 className="page-title">Tarika<br /><em>Campbell</em></h1>
+          <h1 className="page-title">
+            <span className="page-title-first">Tarika</span>
+            <span className="page-title-last">Campbell</span>
+          </h1>
           <div className="header-rule" />
         </div>
 
