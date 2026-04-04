@@ -7,7 +7,7 @@ export default function About() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Tenor+Sans&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Tenor+Sans&display=swap');
 
         :root {
           --black: #0a0a0a;
@@ -28,6 +28,28 @@ export default function About() {
           -webkit-font-smoothing: antialiased;
           overflow-x: hidden;
         }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(32px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+
+        .anim-fade-up {
+          animation: fadeUp 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .anim-fade-in {
+          animation: fadeIn 1.4s ease both;
+        }
+        .delay-1 { animation-delay: 0.15s; }
+        .delay-2 { animation-delay: 0.35s; }
+        .delay-3 { animation-delay: 0.55s; }
+        .delay-4 { animation-delay: 0.75s; }
+        .delay-5 { animation-delay: 0.95s; }
 
         /* ── NAV ── */
         .nav {
@@ -84,7 +106,7 @@ export default function About() {
 
         /* ── PAGE HEADER ── */
         .page-header {
-          padding: 160px 48px 80px;
+          padding: 168px 48px 96px;
           text-align: center;
           position: relative;
           overflow: hidden;
@@ -92,63 +114,63 @@ export default function About() {
         .page-header-bg {
           position: absolute;
           inset: 0;
-          background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(184,154,106,0.06) 0%, transparent 70%);
+          background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(184,154,106,0.05) 0%, transparent 70%);
         }
         .page-label {
-          font-size: 0.6rem;
-          letter-spacing: 0.42em;
+          font-size: 0.58rem;
+          letter-spacing: 0.48em;
           text-transform: uppercase;
-          color: rgba(184,154,106,0.65);
-          margin-bottom: 20px;
+          color: rgba(184,154,106,0.6);
+          margin-bottom: 28px;
         }
+        /* Name block */
         .page-title {
           font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(3.5rem, 8vw, 7rem);
+          font-size: clamp(3.8rem, 8.5vw, 7.5rem);
           font-weight: 300;
-          line-height: 1;
+          line-height: 1.02;
           color: var(--cream);
           letter-spacing: 0;
         }
-        /* "Tarika" — upright, tracked wide: elevated, editorial, intentional */
+        /* "Tarika" — upright, widely tracked: editorial, grounded, intentional */
         .page-title-first {
           display: block;
           font-weight: 400;
-          letter-spacing: 0.16em;
+          letter-spacing: 0.18em;
           color: var(--cream);
-          margin-bottom: 0.14em;
+          margin-bottom: 0.1em;
         }
-        /* "Campbell" — italic, lightly tracked: personal, expressive, balanced */
+        /* "Campbell" — italic, moderate tracking: personal, expressive, warm */
         .page-title-last {
           display: block;
           font-style: italic;
           font-weight: 300;
-          letter-spacing: 0.06em;
+          letter-spacing: 0.07em;
           color: var(--gold-light);
         }
         .header-rule {
           width: 1px;
-          height: 56px;
-          background: linear-gradient(to bottom, transparent, var(--gold), transparent);
-          margin: 40px auto 0;
-          opacity: 0.45;
+          height: 64px;
+          background: linear-gradient(to bottom, transparent, rgba(184,154,106,0.5), transparent);
+          margin: 48px auto 0;
         }
 
         /* ── ABOUT INTRO ── */
         .about-intro {
-          max-width: 720px;
+          max-width: 680px;
           margin: 0 auto;
-          padding: 80px 48px;
+          padding: 88px 48px 96px;
           text-align: center;
         }
         .about-intro-statement {
           font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(1.4rem, 2.5vw, 2rem);
+          font-size: clamp(1.35rem, 2.4vw, 1.9rem);
           font-weight: 300;
           font-style: italic;
-          line-height: 1.65;
-          color: var(--cream);
+          line-height: 1.75;
+          color: rgba(240,235,227,0.88);
           letter-spacing: 0.02em;
-          margin-bottom: 32px;
+          margin-bottom: 40px;
         }
         .about-intro-statement em {
           color: var(--gold-light);
@@ -158,58 +180,69 @@ export default function About() {
           display: flex;
           align-items: center;
           gap: 20px;
-          margin: 0 auto 80px;
-          max-width: 320px;
+          margin: 0 auto;
+          max-width: 280px;
         }
         .divider-line {
           flex: 1;
           height: 1px;
-          background: linear-gradient(to right, transparent, rgba(184,154,106,0.3), transparent);
+          background: linear-gradient(to right, transparent, rgba(184,154,106,0.28), transparent);
         }
 
         /* ── ABOUT MAIN ── */
         .about-main {
-          max-width: 1200px;
+          max-width: 1160px;
           margin: 0 auto;
-          padding: 0 48px 120px;
+          padding: 0 48px 140px;
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 96px;
+          gap: 100px;
           align-items: start;
+        }
+
+        /* Portrait column */
+        .about-portrait-col {
+          position: relative;
+          /* Enough padding to let the frame extend beyond without clipping */
+          padding-bottom: 20px;
+          padding-right: 20px;
         }
         .about-img-wrap {
           position: relative;
           width: 100%;
           aspect-ratio: 3/4;
           overflow: hidden;
-          background: #111;
+          /* Match page background exactly — no gray gap around contained portrait */
+          background: var(--black);
         }
+        /* Gold frame: intentionally offset bottom-right — classic editorial framing */
         .about-frame {
           position: absolute;
-          top: -14px;
-          left: -14px;
-          right: 14px;
-          bottom: 14px;
-          border: 1px solid rgba(184,154,106,0.22);
+          top: 20px;
+          left: 20px;
+          right: -20px;
+          bottom: -20px;
+          border: 1px solid rgba(184,154,106,0.3);
           pointer-events: none;
-          z-index: 1;
         }
-        .about-text { padding-top: 8px; }
+
+        /* Text column */
+        .about-text { padding-top: 6px; }
         .section-label {
-          font-size: 0.58rem;
-          letter-spacing: 0.42em;
+          font-size: 0.56rem;
+          letter-spacing: 0.46em;
           text-transform: uppercase;
           color: var(--gold);
-          margin-bottom: 20px;
+          margin-bottom: 22px;
           display: block;
         }
         .about-heading {
           font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(2rem, 3.5vw, 2.8rem);
+          font-size: clamp(1.9rem, 3.2vw, 2.7rem);
           font-weight: 300;
-          line-height: 1.25;
+          line-height: 1.3;
           color: var(--cream);
-          margin-bottom: 36px;
+          margin-bottom: 40px;
           letter-spacing: 0.01em;
         }
         .about-heading em {
@@ -217,62 +250,76 @@ export default function About() {
           color: var(--gold-light);
         }
         .about-body {
-          font-size: 0.85rem;
-          line-height: 2.1;
-          color: var(--cream-muted);
-          letter-spacing: 0.04em;
-          margin-bottom: 28px;
+          font-size: 0.875rem;
+          line-height: 1.85;
+          color: rgba(214,207,196,0.78);
+          letter-spacing: 0.035em;
+          margin-bottom: 26px;
+          max-width: 52ch;
         }
+        .about-body:last-child { margin-bottom: 0; }
 
         /* ── STATEMENT SECTION ── */
         .statement-section {
-          background: #080808;
+          background: #070707;
           border-top: 1px solid rgba(184,154,106,0.08);
           border-bottom: 1px solid rgba(184,154,106,0.08);
-          padding: 100px 48px;
+          padding: 136px 48px 128px;
         }
         .statement-inner {
-          max-width: 860px;
+          max-width: 800px;
           margin: 0 auto;
           text-align: center;
         }
+        .statement-top-rule {
+          width: 32px;
+          height: 1px;
+          background: rgba(184,154,106,0.35);
+          margin: 0 auto 52px;
+        }
         .statement-quote {
           font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(1.6rem, 3vw, 2.6rem);
+          font-size: clamp(1.65rem, 3.2vw, 2.75rem);
           font-weight: 300;
           font-style: italic;
-          line-height: 1.6;
-          color: var(--cream);
-          letter-spacing: 0.02em;
-          margin-bottom: 40px;
+          line-height: 1.72;
+          color: rgba(240,235,227,0.88);
+          letter-spacing: 0.025em;
+          margin-bottom: 52px;
           position: relative;
         }
         .statement-quote::before {
           content: '\\201C';
           position: absolute;
-          top: -0.4em;
-          left: -0.3em;
-          font-size: 4em;
-          color: rgba(184,154,106,0.12);
+          top: -0.35em;
+          left: -0.25em;
+          font-size: 4.5em;
+          color: rgba(184,154,106,0.1);
           font-family: 'Cormorant Garamond', serif;
           line-height: 1;
         }
+        .statement-bottom-rule {
+          width: 32px;
+          height: 1px;
+          background: rgba(184,154,106,0.35);
+          margin: 0 auto 28px;
+        }
         .statement-attr {
-          font-size: 0.6rem;
-          letter-spacing: 0.38em;
+          font-size: 0.58rem;
+          letter-spacing: 0.42em;
           text-transform: uppercase;
-          color: rgba(184,154,106,0.55);
+          color: rgba(184,154,106,0.5);
         }
 
         /* ── VALUES ── */
         .values-section {
           max-width: 1100px;
           margin: 0 auto;
-          padding: 100px 48px;
+          padding: 120px 48px 128px;
         }
         .values-header {
           text-align: center;
-          margin-bottom: 72px;
+          margin-bottom: 80px;
         }
         .values-title {
           font-family: 'Cormorant Garamond', serif;
@@ -280,6 +327,7 @@ export default function About() {
           font-weight: 300;
           color: var(--cream);
           letter-spacing: 0.02em;
+          margin-top: 14px;
         }
         .values-grid {
           display: grid;
@@ -287,62 +335,62 @@ export default function About() {
           gap: 2px;
         }
         .value-item {
-          padding: 56px 40px;
+          padding: 60px 44px;
           border: 1px solid rgba(184,154,106,0.08);
           text-align: center;
-          transition: border-color 0.4s ease, background 0.4s ease;
+          transition: border-color 0.45s ease, background 0.45s ease;
         }
         .value-item:hover {
-          border-color: rgba(184,154,106,0.22);
-          background: rgba(184,154,106,0.03);
+          border-color: rgba(184,154,106,0.24);
+          background: rgba(184,154,106,0.025);
         }
         .value-number {
           font-family: 'Cormorant Garamond', serif;
-          font-size: 3rem;
+          font-size: 3.2rem;
           font-weight: 300;
           font-style: italic;
-          color: rgba(184,154,106,0.2);
+          color: rgba(184,154,106,0.18);
           line-height: 1;
-          margin-bottom: 24px;
+          margin-bottom: 28px;
         }
         .value-name {
-          font-size: 0.62rem;
-          letter-spacing: 0.38em;
+          font-size: 0.6rem;
+          letter-spacing: 0.42em;
           text-transform: uppercase;
           color: var(--gold);
-          margin-bottom: 16px;
+          margin-bottom: 18px;
         }
         .value-desc {
           font-size: 0.82rem;
-          line-height: 1.9;
-          color: rgba(214,207,196,0.6);
+          line-height: 1.85;
+          color: rgba(214,207,196,0.55);
           letter-spacing: 0.03em;
         }
 
         /* ── CTA ── */
         .about-cta {
           text-align: center;
-          padding: 80px 48px 120px;
+          padding: 96px 48px 136px;
           border-top: 1px solid rgba(184,154,106,0.08);
         }
         .about-cta p {
           font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(1.2rem, 2vw, 1.6rem);
+          font-size: clamp(1.2rem, 2vw, 1.65rem);
           font-weight: 300;
           font-style: italic;
-          color: var(--cream-muted);
-          margin-bottom: 40px;
+          color: rgba(214,207,196,0.7);
+          margin-bottom: 44px;
           letter-spacing: 0.03em;
         }
         .btn-outline {
-          font-size: 0.68rem;
-          letter-spacing: 0.25em;
+          font-size: 0.66rem;
+          letter-spacing: 0.28em;
           text-transform: uppercase;
-          padding: 15px 44px;
-          border: 1px solid rgba(184,154,106,0.45);
+          padding: 16px 48px;
+          border: 1px solid rgba(184,154,106,0.4);
           color: var(--cream);
           text-decoration: none;
-          transition: border-color 0.35s ease, color 0.35s ease;
+          transition: border-color 0.4s ease, color 0.4s ease;
           display: inline-block;
         }
         .btn-outline:hover {
@@ -396,17 +444,18 @@ export default function About() {
         @media (max-width: 900px) {
           .nav-inner { padding: 20px 24px; }
           .nav-links { display: none; }
-          .page-header { padding: 130px 24px 60px; }
-          .about-intro { padding: 60px 24px; }
+          .page-header { padding: 136px 24px 72px; }
+          .about-intro { padding: 64px 24px 72px; }
           .about-main {
             grid-template-columns: 1fr;
-            gap: 48px;
-            padding: 0 24px 80px;
+            gap: 56px;
+            padding: 0 24px 96px;
           }
-          .statement-section { padding: 72px 24px; }
-          .values-section { padding: 72px 24px; }
+          .about-portrait-col { padding-right: 20px; padding-bottom: 20px; }
+          .statement-section { padding: 96px 24px 88px; }
+          .values-section { padding: 88px 24px 96px; }
           .values-grid { grid-template-columns: 1fr; }
-          .about-cta { padding: 60px 24px 80px; }
+          .about-cta { padding: 72px 24px 96px; }
           footer { padding: 36px 24px; }
           .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
         }
@@ -426,30 +475,33 @@ export default function About() {
       </nav>
 
       <main>
+        {/* ── HERO ── */}
         <div className="page-header">
           <div className="page-header-bg" />
-          <p className="page-label">The Artist</p>
-          <h1 className="page-title">
+          <p className="page-label anim-fade-up delay-1">The Artist</p>
+          <h1 className="page-title anim-fade-up delay-2">
             <span className="page-title-first">Tarika</span>
             <span className="page-title-last">Campbell</span>
           </h1>
-          <div className="header-rule" />
+          <div className="header-rule anim-fade-in delay-3" />
         </div>
 
+        {/* ── INTRO QUOTE ── */}
         <div className="about-intro">
-          <p className="about-intro-statement">
+          <p className="about-intro-statement anim-fade-up delay-2">
             "I create because I have to. Because identity deserves to be seen,<br />
             and <em>emotion</em> deserves to take up space."
           </p>
-          <div className="divider">
+          <div className="divider anim-fade-in delay-3">
             <div className="divider-line" />
-            <span style={{ color: "var(--gold)", fontSize: "0.75rem" }}>✦</span>
+            <span style={{ color: "var(--gold)", fontSize: "0.7rem", opacity: 0.7 }}>✦</span>
             <div className="divider-line" />
           </div>
         </div>
 
+        {/* ── PORTRAIT + BIO ── */}
         <div className="about-main">
-          <div style={{ position: "relative" }}>
+          <div className="about-portrait-col anim-fade-in delay-2">
             <div className="about-img-wrap">
               <Image
                 src="/tarika-portrait1.jpg"
@@ -463,7 +515,7 @@ export default function About() {
             <div className="about-frame" />
           </div>
 
-          <div className="about-text">
+          <div className="about-text anim-fade-up delay-3">
             <span className="section-label">Background</span>
             <h2 className="about-heading">
               A practice rooted in<br /><em>presence and identity</em>
@@ -480,16 +532,20 @@ export default function About() {
           </div>
         </div>
 
+        {/* ── ARTIST STATEMENT ── */}
         <div className="statement-section">
           <div className="statement-inner">
-            <span className="section-label" style={{ display: "block", marginBottom: "48px" }}>Artist Statement</span>
-            <p className="statement-quote">
+            <span className="section-label anim-fade-up delay-1" style={{ display: "block", marginBottom: "0" }}>Artist Statement</span>
+            <div className="statement-top-rule anim-fade-in delay-2" style={{ marginTop: "28px" }} />
+            <p className="statement-quote anim-fade-up delay-2">
               My work is not about perfection — it is about presence. I want every piece to hold weight, to carry the texture of something real. Identity. Emotion. Connection. These are not themes. They are the work.
             </p>
-            <p className="statement-attr">— Tarika Campbell</p>
+            <div className="statement-bottom-rule anim-fade-in delay-3" />
+            <p className="statement-attr anim-fade-up delay-3">— Tarika Campbell</p>
           </div>
         </div>
 
+        {/* ── THE PRACTICE ── */}
         <div className="values-section">
           <div className="values-header">
             <span className="section-label">What drives the work</span>
@@ -497,8 +553,8 @@ export default function About() {
           </div>
           <div className="values-grid">
             {[
-              { n: "I", name: "Identity", desc: "Exploring who we are beyond the surface — the layered, complex, beautiful truth of self." },
-              { n: "II", name: "Emotion", desc: "Creating space for feeling. Every brushstroke, every layer, carries emotional weight and intention." },
+              { n: "I",   name: "Identity",   desc: "Exploring who we are beyond the surface — the layered, complex, beautiful truth of self." },
+              { n: "II",  name: "Emotion",    desc: "Creating space for feeling. Every brushstroke, every layer, carries emotional weight and intention." },
               { n: "III", name: "Connection", desc: "Art as a bridge — between artist and viewer, between the personal and the universal." },
             ].map(({ n, name, desc }) => (
               <div className="value-item" key={name}>
@@ -510,6 +566,7 @@ export default function About() {
           </div>
         </div>
 
+        {/* ── CTA ── */}
         <div className="about-cta">
           <p>Interested in working together?</p>
           <Link href="/contact" className="btn-outline">Get In Touch</Link>
