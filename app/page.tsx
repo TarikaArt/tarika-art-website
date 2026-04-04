@@ -36,14 +36,9 @@ export default function Home() {
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
 
         body {
-          background: var(--black);
-          color: var(--cream);
           font-family: 'Tenor Sans', sans-serif;
-          -webkit-font-smoothing: antialiased;
-          overflow-x: hidden;
         }
 
         .font-cormorant { font-family: 'Cormorant Garamond', serif; }
@@ -130,9 +125,12 @@ export default function Home() {
           text-align: center;
           padding: 120px 32px 80px;
           overflow: hidden;
+          /* Solid dark base — prevents global texture from bleeding in too strongly.
+             The hero controls its own atmosphere via .hero-atmosphere and .hero-bg. */
+          background: #0a0a0a;
         }
 
-        /* Ghosted artwork atmosphere layer — ★ TWEAK: opacity (currently 0.07) */
+        /* Ghosted artwork atmosphere — goldroots.jpg blurred into ambient depth */
         .hero-atmosphere {
           position: absolute;
           inset: 0;
@@ -141,12 +139,9 @@ export default function Home() {
         .hero-atmosphere-img {
           object-fit: cover;
           object-position: center 30%;
-          /* ★ TWEAK: blur amount (currently 48px) */
           filter: blur(48px) saturate(0.4) brightness(0.28);
-          /* ★ TWEAK: background image opacity (currently 0.07) */
           opacity: 0.07;
         }
-        /* Darkening vignette over the atmosphere image */
         .hero-atmosphere-vignette {
           position: absolute;
           inset: 0;
@@ -155,64 +150,48 @@ export default function Home() {
             linear-gradient(to bottom, rgba(10,10,10,0.5) 0%, transparent 25%, transparent 75%, rgba(10,10,10,0.6) 100%);
         }
 
-        /* ── GOLD LEAF TEXTURE ── */
-        /* Uses goldroots.jpg — the most gold-leaf-rich artwork in the project.
-           Cropped to the upper portion where gold tones concentrate.
-           ★ TWEAK: opacity (currently 0.055) — range 0.03–0.09 */
-        .hero-gold-leaf {
+        /* Gold leaf texture inside the hero — same image, screen blend, very low opacity.
+           Sits above atmosphere (z-index 1) but below the glow (z-index 2).
+           The hero's solid #0a0a0a background blocks the global fixed texture,
+           so this layer brings it back locally inside the hero only.
+
+           ★ TWEAK hero texture opacity → 0.14  raise to 0.22 for more texture in hero
+           ★ TWEAK hero texture brightness → 1.0  keep near 1 so gold stays warm
+        */
+        .hero-texture {
           position: absolute;
           inset: 0;
           z-index: 1;
-          overflow: hidden;
-        }
-        .hero-gold-leaf-img {
-          object-fit: cover;
-          object-position: center 20%;
-          /* ★ TWEAK: blur — lower = more scraped texture detail visible, higher = more dissolved */
-          /* Currently 18px for testing — tone up to 28–36px once confirmed visible */
-          filter: blur(18px) saturate(0.6) brightness(0.38) sepia(0.25);
-          /* ★ TWEAK: THIS IS THE MAIN VISIBILITY CONTROL — raise this to see more gold */
-          /* Currently 0.18 for testing — final luxury value is around 0.07–0.10 */
-          opacity: 0.18;
-          /* mix-blend-mode: normal so it actually shows on black background */
-          mix-blend-mode: normal;
-        }
-
-        /* Shimmer — a diagonal light band that sweeps slowly across the texture.
-           Reads as light catching raised gold, not as an animation.
-           ★ TWEAK: shimmer opacity (currently 0.018) — keep below 0.04 or it becomes visible */
-        .hero-gold-shimmer {
-          position: absolute;
-          inset: 0;
-          z-index: 2;
-          /* ★ TWEAK: shimmer animation speed (currently 12s) — range 8s–18s */
-          animation: goldShimmer 12s ease-in-out infinite;
-          background: linear-gradient(
-            112deg,
-            transparent 0%,
-            transparent 38%,
-            /* ★ TWEAK: shimmer opacity = change the 0.018 value below */
-            rgba(212,185,138,0.018) 48%,
-            rgba(212,185,138,0.022) 50%,
-            rgba(212,185,138,0.018) 52%,
-            transparent 62%,
-            transparent 100%
-          );
-          background-size: 200% 200%;
+          background-image: url("/goldleafback1.png");
+          background-size: cover;
+          background-position: center 38%;
+          filter: saturate(1.1) brightness(1.0);
+          /* ★ TWEAK: hero texture visibility */
+          opacity: 0.14;
+          mix-blend-mode: screen;
           pointer-events: none;
         }
 
-        /* Gold glow — ★ TWEAK: glow intensity = change rgba alpha values below */
+
+        /* Hero glow — centered around the title area, not the top edge.
+           Two layers:
+           1. Soft ambient halo centered at 42% vertical (title/name area)
+           2. Very faint upper warmth so the top isn't completely cold
+
+           ★ TWEAK glow vertical position: change "42%" in "at 50% 42%"
+             — lower number = moves glow up, higher = moves it down
+           ★ TWEAK glow intensity: change the rgba alpha values (currently 0.13 / 0.05)
+           ★ TWEAK glow width: change ellipse % (currently 70% wide, 55% tall)
+        */
         .hero-bg {
           position: absolute;
           inset: 0;
-          z-index: 3;
+          z-index: 2;
           background:
-            radial-gradient(ellipse 75% 65% at 50% 42%, rgba(184,154,106,0.11) 0%, transparent 65%),
-            radial-gradient(ellipse 38% 38% at 20% 82%, rgba(184,154,106,0.04) 0%, transparent 60%),
-            radial-gradient(ellipse 28% 22% at 80% 15%, rgba(184,154,106,0.03) 0%, transparent 55%);
-          /* ★ TWEAK: glow pulse speed (currently 7s) */
-          animation: glowPulse 7s ease-in-out infinite;
+            radial-gradient(ellipse 72% 58% at 50% 48%, rgba(184,154,106,0.14) 0%, transparent 75%),
+            radial-gradient(ellipse 35% 18% at 50% 8%,  rgba(184,154,106,0.04) 0%, transparent 100%);
+          /* ★ TWEAK: ambient breath — change 9s for speed, or remove animation entirely */
+          animation: ambientBreathe 9s ease-in-out infinite;
         }
 
         /* Grain / canvas texture */
@@ -227,9 +206,15 @@ export default function Home() {
           mix-blend-mode: screen;
         }
 
-        /* All hero content above all texture layers */
-        .hero > *:not(.hero-atmosphere):not(.hero-gold-leaf):not(.hero-gold-shimmer):not(.hero-bg):not(.hero-grain) {
+        /* All hero text/button content above atmosphere, texture, and glow layers. */
+        .hero > *:not(.hero-atmosphere):not(.hero-texture):not(.hero-bg):not(.hero-grain):not(.hero-scroll) {
           position: relative;
+          z-index: 5;
+        }
+
+        /* Scroll indicator — explicit absolute so it never gets overridden */
+        .hero-scroll {
+          position: absolute !important;
           z-index: 5;
         }
 
@@ -354,7 +339,7 @@ export default function Home() {
         }
 
         .hero-scroll {
-          position: absolute;
+          position: absolute !important;
           bottom: 40px;
           left: 50%;
           transform: translateX(-50%);
@@ -362,7 +347,7 @@ export default function Home() {
           flex-direction: column;
           align-items: center;
           gap: 8px;
-          z-index: 3;
+          z-index: 5;
           animation: fadeIn 2s 1.8s ease both;
         }
         .hero-scroll span {
@@ -605,6 +590,14 @@ export default function Home() {
         .footer-socials a:hover { color: var(--gold); }
 
         /* ── ANIMATIONS ── */
+        /* Ambient glow breath — opacity only, no position/direction change.
+           ★ TWEAK: change 9s to slow down or speed up
+           ★ TWEAK: change 0.82 to control how much it dims at the low point */
+        @keyframes ambientBreathe {
+          0%, 100% { opacity: 1; }
+          50%       { opacity: 0.82; }
+        }
+
         @keyframes fadeUp {
           from { opacity: 0; transform: translateY(24px); }
           to   { opacity: 1; transform: translateY(0); }
@@ -616,19 +609,6 @@ export default function Home() {
         @keyframes scrollPulse {
           0%, 100% { opacity: 0.3; transform: scaleY(1); }
           50%       { opacity: 0.75; transform: scaleY(1.18); }
-        }
-        /* ★ TWEAK: glow pulse — change 7s for speed, % values for intensity spread */
-        @keyframes glowPulse {
-          0%, 100% { opacity: 1; }
-          50%       { opacity: 0.72; }
-        }
-        /* Gold shimmer sweep — light band moves diagonally across the texture */
-        @keyframes goldShimmer {
-          0%   { background-position: 200% 200%; opacity: 0; }
-          15%  { opacity: 1; }
-          50%  { background-position: -20% -20%; opacity: 1; }
-          65%  { opacity: 0; }
-          100% { background-position: -20% -20%; opacity: 0; }
         }
 
         /* ── RESPONSIVE ── */
@@ -734,19 +714,8 @@ export default function Home() {
             <div className="hero-atmosphere-vignette" />
           </div>
 
-          {/* Gold leaf texture — goldroots.jpg processed into surface depth */}
-          <div className="hero-gold-leaf">
-            <Image
-              src="/goldroots.jpg"
-              alt=""
-              fill
-              className="hero-gold-leaf-img"
-              sizes="100vw"
-              aria-hidden="true"
-            />
-          </div>
-          {/* Shimmer — slow diagonal light sweep over the texture */}
-          <div className="hero-gold-shimmer" />
+          {/* Gold leaf texture inside hero — screen blend on dark base */}
+          <div className="hero-texture" aria-hidden="true" />
 
           <div className="hero-bg" />
           <div className="hero-grain" />
