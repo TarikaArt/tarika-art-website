@@ -164,11 +164,11 @@ export default function About() {
         }
         .about-intro-statement {
           font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+          font-size: clamp(1.45rem, 2.6vw, 2rem);
           font-weight: 300;
           font-style: italic;
-          line-height: 1.75;
-          color: rgba(240,235,227,0.88);
+          line-height: 1.78;
+          color: rgba(240,235,227,0.9);
           letter-spacing: 0.02em;
           margin-bottom: 40px;
         }
@@ -203,27 +203,28 @@ export default function About() {
         /* Portrait column */
         .about-portrait-col {
           position: relative;
-          /* Enough padding to let the frame extend beyond without clipping */
-          padding-bottom: 20px;
-          padding-right: 20px;
+          /* Room for offset gold frame to extend without clipping */
+          padding-bottom: 24px;
+          padding-right: 24px;
         }
         .about-img-wrap {
           position: relative;
           width: 100%;
-          aspect-ratio: 3/4;
+          aspect-ratio: 4/5;
           overflow: hidden;
-          /* Match page background exactly — no gray gap around contained portrait */
+          border-radius: 2px;
           background: var(--black);
         }
-        /* Gold frame: intentionally offset bottom-right — classic editorial framing */
+        /* Gold frame: offset bottom-right — classic editorial framing */
         .about-frame {
           position: absolute;
-          top: 20px;
-          left: 20px;
-          right: -20px;
-          bottom: -20px;
-          border: 1px solid rgba(184,154,106,0.3);
+          top: 16px;
+          left: 16px;
+          right: -16px;
+          bottom: -16px;
+          border: 1px solid rgba(184,154,106,0.28);
           pointer-events: none;
+          z-index: 2;
         }
 
         /* Text column */
@@ -250,11 +251,11 @@ export default function About() {
           color: var(--gold-light);
         }
         .about-body {
-          font-size: 0.875rem;
-          line-height: 1.85;
-          color: rgba(214,207,196,0.78);
-          letter-spacing: 0.035em;
-          margin-bottom: 26px;
+          font-size: 0.95rem;
+          line-height: 1.95;
+          color: rgba(214,207,196,0.82);
+          letter-spacing: 0.03em;
+          margin-bottom: 28px;
           max-width: 52ch;
         }
         .about-body:last-child { margin-bottom: 0; }
@@ -279,11 +280,11 @@ export default function About() {
         }
         .statement-quote {
           font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(1.65rem, 3.2vw, 2.75rem);
+          font-size: clamp(1.75rem, 3.4vw, 2.9rem);
           font-weight: 300;
           font-style: italic;
-          line-height: 1.72;
-          color: rgba(240,235,227,0.88);
+          line-height: 1.75;
+          color: rgba(240,235,227,0.9);
           letter-spacing: 0.025em;
           margin-bottom: 52px;
           position: relative;
@@ -361,9 +362,9 @@ export default function About() {
           margin-bottom: 18px;
         }
         .value-desc {
-          font-size: 0.82rem;
-          line-height: 1.85;
-          color: rgba(214,207,196,0.55);
+          font-size: 0.88rem;
+          line-height: 1.9;
+          color: rgba(214,207,196,0.62);
           letter-spacing: 0.03em;
         }
 
@@ -507,7 +508,7 @@ export default function About() {
                 src="/tarika-portrait1.jpg"
                 alt="Tarika Campbell"
                 fill
-                style={{ objectFit: "contain", objectPosition: "center" }}
+                style={{ objectFit: "cover", objectPosition: "center top" }}
                 sizes="(max-width: 900px) 100vw, 50vw"
                 priority
               />

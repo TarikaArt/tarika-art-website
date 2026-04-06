@@ -20,30 +20,39 @@ export default function Home() {
   const [newsletterStatus, setNewsletterStatus] = useState<NewsletterStatus>("idle");
   const [newsletterMessage, setNewsletterMessage] = useState("");
 
-  function handleNewsletterSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!newsletterEmail || newsletterStatus === "loading") return;
+  // Popup state
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupEmail, setPopupEmail] = useState("");
+  const [popupStatus, setPopupStatus] = useState<NewsletterStatus>("idle");
+  const [popupMessage, setPopupMessage] = useState("");
 
-    setNewsletterStatus("loading");
+  function subscribeMailchimp(
+    email: string,
+    setStatus: (s: NewsletterStatus) => void,
+    setMessage: (m: string) => void,
+    setEmail: (e: string) => void,
+  ) {
+    if (!email || setStatus === null) return;
+    setStatus("loading");
 
     const callbackName = `mc_cb_${Date.now()}`;
     const params = new URLSearchParams({
       u: "e443753f70b903d7f28ff03cf",
       id: "0c6345dad5",
       f_id: "003028e2f0",
-      EMAIL: newsletterEmail,
+      EMAIL: email,
       "b_e443753f70b903d7f28ff03cf_0c6345dad5": "",
       c: callbackName,
     });
     const url = `https://tarikaart.us3.list-manage.com/subscribe/post-json?${params}`;
 
+    const win = window as unknown as Record<string, unknown>;
+
     const timeout = setTimeout(() => {
-      setNewsletterStatus("error");
-      setNewsletterMessage("Something went wrong. Please try again.");
+      setStatus("error");
+      setMessage("Something went wrong. Please try again.");
       cleanup();
     }, 8000);
-
-    const win = window as unknown as Record<string, unknown>;
 
     function cleanup() {
       clearTimeout(timeout);
@@ -54,14 +63,13 @@ export default function Home() {
 
     win[callbackName] = (data: { result: string; msg: string }) => {
       if (data.result === "success") {
-        setNewsletterStatus("success");
-        setNewsletterMessage("You're subscribed. Thank you.");
-        setNewsletterEmail("");
+        setStatus("success");
+        setMessage("You're subscribed. Thank you.");
+        setEmail("");
       } else {
-        setNewsletterStatus("error");
-        // Strip Mailchimp's HTML error links for clean display
+        setStatus("error");
         const msg = data.msg?.replace(/<[^>]+>/g, "").replace(/^\d+ - /, "") || "Please try again.";
-        setNewsletterMessage(msg);
+        setMessage(msg);
       }
       cleanup();
     };
@@ -72,10 +80,38 @@ export default function Home() {
     document.head.appendChild(script);
   }
 
+  function handleNewsletterSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!newsletterEmail || newsletterStatus === "loading") return;
+    subscribeMailchimp(newsletterEmail, setNewsletterStatus, setNewsletterMessage, setNewsletterEmail);
+  }
+
+  function handlePopupSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!popupEmail || popupStatus === "loading") return;
+    subscribeMailchimp(popupEmail, setPopupStatus, setPopupMessage, setPopupEmail);
+  }
+
+  function closePopup() {
+    setShowPopup(false);
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("mc_popup_seen", "1");
+    }
+  }
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const seen = sessionStorage.getItem("mc_popup_seen");
+    if (!seen) {
+      const timer = setTimeout(() => setShowPopup(true), 5000);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   return (
@@ -601,10 +637,10 @@ export default function Home() {
           margin-bottom: 20px;
         }
         .service-desc {
-          font-size: 0.84rem;
-          line-height: 1.95;
-          color: rgba(214,207,196,0.62);
-          letter-spacing: 0.04em;
+          font-size: 0.92rem;
+          line-height: 2;
+          color: rgba(214,207,196,0.65);
+          letter-spacing: 0.035em;
           margin-bottom: 40px;
           flex: 1;
         }
@@ -652,11 +688,10 @@ export default function Home() {
           color: var(--gold-light);
         }
         .about-body {
-          /* ★ TWEAK: about paragraph text size */
-          font-size: 0.88rem;
-          line-height: 2.05;
-          color: rgba(214,207,196,0.78);
-          letter-spacing: 0.04em;
+          font-size: 0.95rem;
+          line-height: 2;
+          color: rgba(214,207,196,0.82);
+          letter-spacing: 0.035em;
           margin-bottom: 40px;
         }
         .link-underline {
@@ -700,10 +735,10 @@ export default function Home() {
           margin-bottom: 16px;
         }
         .newsletter-body {
-          font-size: 0.84rem;
+          font-size: 0.92rem;
           line-height: 1.95;
-          color: rgba(214,207,196,0.55);
-          letter-spacing: 0.04em;
+          color: rgba(214,207,196,0.6);
+          letter-spacing: 0.035em;
           max-width: 460px;
           margin: 0 auto 40px;
         }
@@ -879,6 +914,246 @@ export default function Home() {
           transition: color 0.3s ease;
         }
         .mobile-nav a:hover { color: var(--gold-light); }
+
+        /* ── HERO DRIFT LAYER ── */
+        @keyframes ambientDrift {
+          0%   { transform: translate(0%,   0%)   scale(1);    opacity: 0.13; }
+          33%  { transform: translate(0.8%, -0.8%) scale(1.018); opacity: 0.16; }
+          66%  { transform: translate(-0.5%, 0.7%) scale(1.01);  opacity: 0.10; }
+          100% { transform: translate(0%,   0%)   scale(1);    opacity: 0.13; }
+        }
+        .hero-glow-drift {
+          position: absolute;
+          inset: -8%;
+          z-index: 3;
+          background: radial-gradient(ellipse 60% 50% at 52% 46%, rgba(212,185,138,0.22) 0%, rgba(184,154,106,0.06) 45%, transparent 75%);
+          animation: ambientDrift 14s ease-in-out infinite;
+          pointer-events: none;
+        }
+
+        /* ── COMMISSION CTA (homepage, below hero) ── */
+        .commission-cta-section {
+          background: #070707;
+          border-top: 1px solid rgba(184,154,106,0.1);
+          border-bottom: 1px solid rgba(184,154,106,0.1);
+          padding: 96px 48px;
+          text-align: center;
+        }
+        .commission-cta-section .section-label { margin-bottom: 20px; display: block; }
+        .commission-cta-heading {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(2rem, 4vw, 3.2rem);
+          font-weight: 300;
+          color: var(--cream);
+          letter-spacing: 0.02em;
+          margin-bottom: 18px;
+        }
+        .commission-cta-body {
+          font-size: 0.92rem;
+          line-height: 1.95;
+          color: rgba(214,207,196,0.62);
+          letter-spacing: 0.04em;
+          max-width: 460px;
+          margin: 0 auto 40px;
+        }
+
+        /* ── SHOP SECTION ── */
+        .shop-section {
+          border-top: 1px solid rgba(184,154,106,0.08);
+          padding: 96px 48px;
+          text-align: center;
+        }
+        .shop-heading {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(2rem, 4vw, 3rem);
+          font-weight: 300;
+          color: var(--cream);
+          letter-spacing: 0.02em;
+          margin-bottom: 18px;
+          margin-top: 14px;
+        }
+        .shop-body {
+          font-size: 0.92rem;
+          line-height: 1.95;
+          color: rgba(214,207,196,0.58);
+          letter-spacing: 0.04em;
+          max-width: 440px;
+          margin: 0 auto 40px;
+        }
+        .shop-grid {
+          display: flex;
+          gap: 24px;
+          justify-content: center;
+          flex-wrap: wrap;
+          margin-top: 56px;
+        }
+        .shop-card {
+          width: 220px;
+          border: 1px solid rgba(184,154,106,0.12);
+          padding: 36px 24px 28px;
+          text-align: center;
+          transition: border-color 0.4s ease, background 0.4s ease;
+        }
+        .shop-card:hover {
+          border-color: rgba(184,154,106,0.3);
+          background: rgba(184,154,106,0.03);
+        }
+        .shop-card-icon {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 2.4rem;
+          font-weight: 300;
+          font-style: italic;
+          color: rgba(184,154,106,0.35);
+          margin-bottom: 16px;
+          line-height: 1;
+        }
+        .shop-card-label {
+          font-size: 0.6rem;
+          letter-spacing: 0.38em;
+          text-transform: uppercase;
+          color: var(--gold);
+          margin-bottom: 10px;
+        }
+        .shop-card-desc {
+          font-size: 0.8rem;
+          line-height: 1.75;
+          color: rgba(214,207,196,0.5);
+          letter-spacing: 0.03em;
+        }
+
+        /* ── NEWSLETTER POPUP ── */
+        .popup-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(10,10,10,0.78);
+          backdrop-filter: blur(6px);
+          z-index: 200;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 24px;
+          animation: fadeIn 0.4s ease both;
+        }
+        .popup-modal {
+          background: #0e0e0e;
+          border: 1px solid rgba(184,154,106,0.2);
+          max-width: 520px;
+          width: 100%;
+          padding: 60px 48px 52px;
+          position: relative;
+          animation: fadeUp 0.5s ease both;
+          text-align: center;
+        }
+        .popup-close {
+          position: absolute;
+          top: 20px;
+          right: 24px;
+          background: none;
+          border: none;
+          color: rgba(214,207,196,0.35);
+          font-size: 1.2rem;
+          cursor: pointer;
+          padding: 4px 8px;
+          line-height: 1;
+          transition: color 0.3s ease;
+        }
+        .popup-close:hover { color: var(--gold); }
+        .popup-label {
+          font-size: 0.58rem;
+          letter-spacing: 0.44em;
+          text-transform: uppercase;
+          color: rgba(184,154,106,0.55);
+          margin-bottom: 24px;
+          display: block;
+        }
+        .popup-heading {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+          font-weight: 300;
+          color: var(--cream);
+          letter-spacing: 0.02em;
+          margin-bottom: 16px;
+          line-height: 1.2;
+        }
+        .popup-body {
+          font-size: 0.88rem;
+          line-height: 1.9;
+          color: rgba(214,207,196,0.6);
+          letter-spacing: 0.03em;
+          max-width: 360px;
+          margin: 0 auto 32px;
+        }
+        .popup-form {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          max-width: 380px;
+          margin: 0 auto;
+        }
+        .popup-input {
+          background: #161616;
+          border: none;
+          outline: none;
+          color: var(--cream);
+          font-family: 'Tenor Sans', sans-serif;
+          font-size: 0.85rem;
+          letter-spacing: 0.04em;
+          padding: 16px 20px;
+          width: 100%;
+          transition: background 0.3s ease;
+        }
+        .popup-input::placeholder { color: rgba(214,207,196,0.22); }
+        .popup-input:focus { background: #1c1c1c; }
+        .popup-submit {
+          background: var(--gold);
+          color: var(--black);
+          border: none;
+          font-family: 'Tenor Sans', sans-serif;
+          font-size: 0.66rem;
+          letter-spacing: 0.28em;
+          text-transform: uppercase;
+          padding: 17px 24px;
+          cursor: pointer;
+          transition: background 0.35s ease, transform 0.3s ease;
+          margin-top: 2px;
+        }
+        .popup-submit:hover:not(:disabled) {
+          background: var(--gold-light);
+          transform: translateY(-1px);
+        }
+        .popup-submit:disabled { opacity: 0.55; cursor: not-allowed; }
+        .popup-msg {
+          margin-top: 16px;
+          font-size: 0.78rem;
+          letter-spacing: 0.1em;
+        }
+        .popup-msg.success { color: var(--gold-light); }
+        .popup-msg.error { color: rgba(230,110,110,0.85); }
+        .popup-rule {
+          width: 32px;
+          height: 1px;
+          background: rgba(184,154,106,0.3);
+          margin: 0 auto 28px;
+        }
+        .popup-skip {
+          display: block;
+          margin-top: 20px;
+          font-size: 0.6rem;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: rgba(214,207,196,0.3);
+          cursor: pointer;
+          background: none;
+          border: none;
+          transition: color 0.3s ease;
+        }
+        .popup-skip:hover { color: rgba(214,207,196,0.55); }
+
+        @media (max-width: 900px) {
+          .commission-cta-section { padding: 72px 24px; }
+          .shop-section { padding: 72px 24px; }
+          .popup-modal { padding: 48px 28px 40px; }
+        }
       `}</style>
 
       {/* NAVIGATION */}
@@ -939,6 +1214,7 @@ export default function Home() {
           <div className="hero-texture" aria-hidden="true" />
 
           <div className="hero-bg" />
+          <div className="hero-glow-drift" aria-hidden="true" />
           <div className="hero-grain" />
 
           <div className="hero-rule" />
@@ -956,6 +1232,28 @@ export default function Home() {
             <div className="scroll-line" />
             <span>Scroll</span>
           </div>
+        </section>
+
+        {/* COMMISSION CTA */}
+        <section className="commission-cta-section">
+          <span className="section-label">Custom Work</span>
+          <h2 className="commission-cta-heading font-cormorant">Commission a Piece</h2>
+          <div className="section-divider" style={{ maxWidth: "280px", margin: "20px auto 0" }}>
+            <div className="section-divider-line" />
+            <span style={{ color: "var(--gold)", fontSize: "0.8rem" }}>✦</span>
+            <div className="section-divider-line" />
+          </div>
+          <p className="commission-cta-body" style={{ marginTop: "28px" }}>
+            Bring your vision to life through custom artwork designed just for you.
+          </p>
+          <a
+            href="https://forms.gle/EVYZKSUh8MyzwT4N9"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary"
+          >
+            Start Your Commission
+          </a>
         </section>
 
         {/* FEATURED WORK */}
@@ -1085,6 +1383,43 @@ export default function Home() {
         </section>
       </main>
 
+      {/* SHOP */}
+      <section className="shop-section">
+        <span className="section-label">The Shop</span>
+        <h2 className="shop-heading font-cormorant">Prints &amp; Originals</h2>
+        <div className="section-divider" style={{ maxWidth: "280px", margin: "20px auto 0" }}>
+          <div className="section-divider-line" />
+          <span style={{ color: "var(--gold)", fontSize: "0.8rem" }}>✦</span>
+          <div className="section-divider-line" />
+        </div>
+        <p className="shop-body" style={{ marginTop: "28px" }}>
+          Browse fine art prints, originals, and limited editions available through the Tarika Art shop.
+        </p>
+        <div className="shop-grid">
+          {[
+            { icon: "I",  label: "Fine Art Prints",    desc: "Museum-quality prints of original works, available in multiple sizes." },
+            { icon: "II", label: "Original Works",     desc: "One-of-a-kind paintings available for direct purchase and collection." },
+            { icon: "III", label: "Limited Editions",  desc: "Numbered runs of signature pieces. Once gone, they're gone." },
+          ].map(({ icon, label, desc }) => (
+            <div className="shop-card" key={label}>
+              <p className="shop-card-icon">{icon}</p>
+              <p className="shop-card-label">{label}</p>
+              <p className="shop-card-desc">{desc}</p>
+            </div>
+          ))}
+        </div>
+        <div style={{ marginTop: "52px" }}>
+          <a
+            href="https://tarikaart.printify.me"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary"
+          >
+            Visit the Shop
+          </a>
+        </div>
+      </section>
+
       {/* NEWSLETTER */}
       <section className="newsletter-section" aria-label="Newsletter signup">
         <p className="newsletter-label">Newsletter</p>
@@ -1095,7 +1430,7 @@ export default function Home() {
           <div className="section-divider-line" />
         </div>
         <p className="newsletter-body">
-          Subscribe for updates on new artwork, commissions, events, and releases.
+          Be the first to see new work, commission openings, and creative releases.
         </p>
 
         {newsletterStatus === "success" ? (
@@ -1145,6 +1480,57 @@ export default function Home() {
           <p className="newsletter-msg error" role="alert">{newsletterMessage}</p>
         )}
       </section>
+
+      {/* NEWSLETTER POPUP */}
+      {showPopup && (
+        <div className="popup-overlay" role="dialog" aria-modal="true" aria-label="Stay Connected">
+          <div className="popup-modal">
+            <button className="popup-close" onClick={closePopup} aria-label="Close">✕</button>
+            <span className="popup-label">Newsletter</span>
+            <div className="popup-rule" />
+            <h2 className="popup-heading font-cormorant">Stay Connected</h2>
+            <p className="popup-body">
+              Be the first to see new work, commission openings, and creative releases.
+            </p>
+            {popupStatus === "success" ? (
+              <p className="popup-msg success" role="status">{popupMessage}</p>
+            ) : (
+              <form className="popup-form" onSubmit={handlePopupSubmit} noValidate>
+                <input
+                  type="text"
+                  name="b_e443753f70b903d7f28ff03cf_0c6345dad5"
+                  tabIndex={-1}
+                  aria-hidden="true"
+                  defaultValue=""
+                  style={{ position: "absolute", left: "-9999px" }}
+                  readOnly
+                />
+                <input
+                  type="email"
+                  className="popup-input"
+                  placeholder="your@email.com"
+                  value={popupEmail}
+                  onChange={(e) => setPopupEmail(e.target.value)}
+                  required
+                  aria-label="Email address"
+                  autoComplete="email"
+                />
+                <button
+                  type="submit"
+                  className="popup-submit"
+                  disabled={popupStatus === "loading"}
+                >
+                  {popupStatus === "loading" ? "Subscribing…" : "Subscribe"}
+                </button>
+                {popupStatus === "error" && (
+                  <p className="popup-msg error" role="alert">{popupMessage}</p>
+                )}
+              </form>
+            )}
+            <button className="popup-skip" onClick={closePopup}>No thanks</button>
+          </div>
+        </div>
+      )}
 
       {/* FOOTER */}
       <footer>

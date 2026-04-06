@@ -168,10 +168,10 @@ export default function Contact() {
           color: var(--gold-light);
         }
         .contact-body {
-          font-size: 0.83rem;
+          font-size: 0.92rem;
           line-height: 2;
           color: var(--cream-muted);
-          letter-spacing: 0.04em;
+          letter-spacing: 0.035em;
           margin-bottom: 56px;
         }
 
@@ -330,10 +330,10 @@ export default function Contact() {
           margin-bottom: 24px;
         }
         .commission-cta-body {
-          font-size: 0.84rem;
+          font-size: 0.92rem;
           line-height: 1.95;
-          color: rgba(214,207,196,0.62);
-          letter-spacing: 0.04em;
+          color: rgba(214,207,196,0.65);
+          letter-spacing: 0.035em;
           max-width: 520px;
           margin: 0 auto 44px;
         }
@@ -438,10 +438,10 @@ export default function Contact() {
         <div className="commission-cta">
           <span className="commission-cta-label">Custom Commission</span>
           <h2 className="commission-cta-heading">
-            Let&apos;s create something<br />personal.
+            Commission a Piece
           </h2>
           <p className="commission-cta-body">
-            If you&apos;re interested in a custom artwork commission, I&apos;d love to hear more about your vision. Reach out to start the conversation.
+            If you&apos;re interested in a custom artwork commission, I&apos;d love to hear more about your vision.
           </p>
           <a
             href="https://forms.gle/EVYZKSUh8MyzwT4N9"

@@ -253,6 +253,40 @@ export default function Portfolio() {
           box-shadow: 0 12px 40px rgba(184,154,106,0.22);
         }
 
+        /* ── TOP CTA STRIP ── */
+        .top-cta-strip {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 48px 56px;
+          gap: 24px;
+        }
+        .top-cta-text {
+          font-size: 0.7rem;
+          letter-spacing: 0.28em;
+          text-transform: uppercase;
+          color: rgba(214,207,196,0.45);
+        }
+        .btn-outline-sm {
+          font-size: 0.64rem;
+          letter-spacing: 0.24em;
+          text-transform: uppercase;
+          padding: 12px 36px;
+          border: 1px solid rgba(184,154,106,0.38);
+          color: var(--cream);
+          text-decoration: none;
+          display: inline-block;
+          white-space: nowrap;
+          transition: border-color 0.35s ease, color 0.35s ease;
+          flex-shrink: 0;
+        }
+        .btn-outline-sm:hover {
+          border-color: var(--gold);
+          color: var(--gold-light);
+        }
+
         /* ── FOOTER ── */
         footer {
           border-top: 1px solid rgba(184,154,106,0.12);
@@ -303,6 +337,7 @@ export default function Portfolio() {
           .nav-inner { padding: 20px 24px; }
           .nav-links { display: none; }
           .page-header { padding: 130px 24px 60px; }
+          .top-cta-strip { padding: 0 24px 40px; flex-direction: column; align-items: flex-start; }
           .gallery-wrap { padding: 60px 24px 80px; }
           .gallery-grid { grid-template-columns: 1fr; }
           .gallery-item { aspect-ratio: 4/5; }
@@ -332,6 +367,18 @@ export default function Portfolio() {
           <p className="page-label">Selected Works</p>
           <h1 className="page-title">The<br /><em>Portfolio</em></h1>
           <div className="header-rule" />
+        </div>
+
+        <div className="top-cta-strip">
+          <p className="top-cta-text">Available for commission</p>
+          <a
+            href="https://forms.gle/EVYZKSUh8MyzwT4N9"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-outline-sm"
+          >
+            Inquire Now
+          </a>
         </div>
 
         <div className="gallery-wrap">
