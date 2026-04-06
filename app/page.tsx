@@ -460,7 +460,7 @@ export default function Home() {
           letter-spacing: 0.32em;
           text-transform: uppercase;
           color: var(--gold);
-          margin-bottom: 16px;
+          margin-bottom: 20px;
         }
         .section-divider {
           display: flex;
@@ -482,7 +482,7 @@ export default function Home() {
         }
         .works-header {
           text-align: center;
-          margin-bottom: 80px;
+          margin-bottom: 72px;
         }
         .works-title {
           font-family: 'Cormorant Garamond', serif;
@@ -589,7 +589,7 @@ export default function Home() {
         }
         .services-header {
           text-align: center;
-          margin-bottom: 80px;
+          margin-bottom: 72px;
         }
         .services-title {
           font-family: 'Cormorant Garamond', serif;
@@ -647,7 +647,7 @@ export default function Home() {
           padding: 120px 48px;
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 88px;
+          gap: 80px;
           max-width: 1200px;
           margin: 0 auto;
           align-items: center;
@@ -677,7 +677,7 @@ export default function Home() {
           font-weight: 300;
           line-height: 1.5;
           color: var(--cream);
-          margin-bottom: 28px;
+          margin-bottom: 32px;
           letter-spacing: 0.01em;
         }
         .about-statement em {

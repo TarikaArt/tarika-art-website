@@ -106,7 +106,7 @@ export default function About() {
 
         /* ── PAGE HEADER ── */
         .page-header {
-          padding: 168px 48px 96px;
+          padding: 160px 48px 88px;
           text-align: center;
           position: relative;
           overflow: hidden;
@@ -159,7 +159,7 @@ export default function About() {
         .about-intro {
           max-width: 680px;
           margin: 0 auto;
-          padding: 88px 48px 96px;
+          padding: 80px 48px 80px;
           text-align: center;
         }
         .about-intro-statement {
@@ -193,10 +193,10 @@ export default function About() {
         .about-main {
           max-width: 1160px;
           margin: 0 auto;
-          padding: 0 48px 140px;
+          padding: 0 48px 96px;
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 100px;
+          gap: 96px;
           align-items: start;
         }
 
@@ -243,7 +243,7 @@ export default function About() {
           font-weight: 300;
           line-height: 1.3;
           color: var(--cream);
-          margin-bottom: 40px;
+          margin-bottom: 32px;
           letter-spacing: 0.01em;
         }
         .about-heading em {
@@ -265,7 +265,7 @@ export default function About() {
           background: #070707;
           border-top: 1px solid rgba(184,154,106,0.08);
           border-bottom: 1px solid rgba(184,154,106,0.08);
-          padding: 136px 48px 128px;
+          padding: 120px 48px;
         }
         .statement-inner {
           max-width: 800px;
@@ -286,7 +286,7 @@ export default function About() {
           line-height: 1.75;
           color: rgba(240,235,227,0.9);
           letter-spacing: 0.025em;
-          margin-bottom: 52px;
+          margin-bottom: 44px;
           position: relative;
         }
         .statement-quote::before {
@@ -316,11 +316,11 @@ export default function About() {
         .values-section {
           max-width: 1100px;
           margin: 0 auto;
-          padding: 120px 48px 128px;
+          padding: 120px 48px;
         }
         .values-header {
           text-align: center;
-          margin-bottom: 80px;
+          margin-bottom: 72px;
         }
         .values-title {
           font-family: 'Cormorant Garamond', serif;
@@ -371,7 +371,7 @@ export default function About() {
         /* ── CTA ── */
         .about-cta {
           text-align: center;
-          padding: 96px 48px 136px;
+          padding: 96px 48px 112px;
           border-top: 1px solid rgba(184,154,106,0.08);
         }
         .about-cta p {
@@ -445,18 +445,18 @@ export default function About() {
         @media (max-width: 900px) {
           .nav-inner { padding: 20px 24px; }
           .nav-links { display: none; }
-          .page-header { padding: 136px 24px 72px; }
-          .about-intro { padding: 64px 24px 72px; }
+          .page-header { padding: 128px 24px 72px; }
+          .about-intro { padding: 64px 24px 64px; }
           .about-main {
             grid-template-columns: 1fr;
             gap: 56px;
-            padding: 0 24px 96px;
+            padding: 0 24px 80px;
           }
           .about-portrait-col { padding-right: 20px; padding-bottom: 20px; }
-          .statement-section { padding: 96px 24px 88px; }
-          .values-section { padding: 88px 24px 96px; }
+          .statement-section { padding: 88px 24px; }
+          .values-section { padding: 88px 24px; }
           .values-grid { grid-template-columns: 1fr; }
-          .about-cta { padding: 72px 24px 96px; }
+          .about-cta { padding: 72px 24px 88px; }
           footer { padding: 36px 24px; }
           .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
         }

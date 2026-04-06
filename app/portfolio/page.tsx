@@ -93,7 +93,7 @@ export default function Portfolio() {
 
         /* ── PAGE HEADER ── */
         .page-header {
-          padding: 160px 48px 72px;
+          padding: 160px 48px 88px;
           text-align: center;
           position: relative;
           overflow: hidden;
@@ -134,7 +134,7 @@ export default function Portfolio() {
         .gallery-wrap {
           max-width: 1400px;
           margin: 0 auto;
-          padding: 80px 48px 120px;
+          padding: 72px 48px 96px;
         }
         .gallery-grid {
           display: grid;
@@ -336,7 +336,7 @@ export default function Portfolio() {
         @media (max-width: 900px) {
           .nav-inner { padding: 20px 24px; }
           .nav-links { display: none; }
-          .page-header { padding: 130px 24px 60px; }
+          .page-header { padding: 128px 24px 72px; }
           .top-cta-strip { padding: 0 24px 40px; flex-direction: column; align-items: flex-start; }
           .gallery-wrap { padding: 60px 24px 80px; }
           .gallery-grid { grid-template-columns: 1fr; }

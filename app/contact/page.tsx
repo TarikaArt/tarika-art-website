@@ -96,7 +96,7 @@ export default function Contact() {
 
         /* ── PAGE HEADER ── */
         .page-header {
-          padding: 160px 48px 72px;
+          padding: 160px 48px 88px;
           text-align: center;
           position: relative;
           overflow: hidden;
@@ -137,7 +137,7 @@ export default function Contact() {
         .contact-wrap {
           max-width: 1100px;
           margin: 0 auto;
-          padding: 80px 48px 120px;
+          padding: 80px 48px 96px;
           display: grid;
           grid-template-columns: 1fr 1.4fr;
           gap: 96px;
@@ -400,7 +400,7 @@ export default function Contact() {
         @media (max-width: 900px) {
           .nav-inner { padding: 20px 24px; }
           .nav-links { display: none; }
-          .page-header { padding: 130px 24px 60px; }
+          .page-header { padding: 128px 24px 72px; }
           .contact-wrap {
             grid-template-columns: 1fr;
             gap: 56px;
