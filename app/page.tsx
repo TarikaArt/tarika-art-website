@@ -10,10 +10,67 @@ const artworks = [
   { id: 3, src: "/peace-pyrite.jpg", title: "Peace & Pyrite", year: "2024", medium: "Oil on Canvas" },
 ];
 
+type NewsletterStatus = "idle" | "loading" | "success" | "error";
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [newsletterStatus, setNewsletterStatus] = useState<NewsletterStatus>("idle");
+  const [newsletterMessage, setNewsletterMessage] = useState("");
+
+  function handleNewsletterSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!newsletterEmail || newsletterStatus === "loading") return;
+
+    setNewsletterStatus("loading");
+
+    const callbackName = `mc_cb_${Date.now()}`;
+    const params = new URLSearchParams({
+      u: "e443753f70b903d7f28ff03cf",
+      id: "0c6345dad5",
+      f_id: "003028e2f0",
+      EMAIL: newsletterEmail,
+      "b_e443753f70b903d7f28ff03cf_0c6345dad5": "",
+      c: callbackName,
+    });
+    const url = `https://tarikaart.us3.list-manage.com/subscribe/post-json?${params}`;
+
+    const timeout = setTimeout(() => {
+      setNewsletterStatus("error");
+      setNewsletterMessage("Something went wrong. Please try again.");
+      cleanup();
+    }, 8000);
+
+    const win = window as unknown as Record<string, unknown>;
+
+    function cleanup() {
+      clearTimeout(timeout);
+      delete win[callbackName];
+      const s = document.getElementById(callbackName);
+      if (s) s.remove();
+    }
+
+    win[callbackName] = (data: { result: string; msg: string }) => {
+      if (data.result === "success") {
+        setNewsletterStatus("success");
+        setNewsletterMessage("You're subscribed. Thank you.");
+        setNewsletterEmail("");
+      } else {
+        setNewsletterStatus("error");
+        // Strip Mailchimp's HTML error links for clean display
+        const msg = data.msg?.replace(/<[^>]+>/g, "").replace(/^\d+ - /, "") || "Please try again.";
+        setNewsletterMessage(msg);
+      }
+      cleanup();
+    };
+
+    const script = document.createElement("script");
+    script.id = callbackName;
+    script.src = url;
+    document.head.appendChild(script);
+  }
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -617,6 +674,96 @@ export default function Home() {
           border-color: var(--gold-light);
         }
 
+        /* ── NEWSLETTER ── */
+        .newsletter-section {
+          background: #070707;
+          border-top: 1px solid rgba(184,154,106,0.08);
+          border-bottom: 1px solid rgba(184,154,106,0.08);
+          padding: 96px 48px;
+          text-align: center;
+        }
+        .newsletter-label {
+          font-size: 0.62rem;
+          letter-spacing: 0.44em;
+          text-transform: uppercase;
+          color: rgba(184,154,106,0.55);
+          margin-bottom: 24px;
+          display: block;
+        }
+        .newsletter-heading {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(2rem, 4vw, 3rem);
+          font-weight: 300;
+          color: var(--cream);
+          letter-spacing: 0.02em;
+          margin-top: 14px;
+          margin-bottom: 16px;
+        }
+        .newsletter-body {
+          font-size: 0.84rem;
+          line-height: 1.95;
+          color: rgba(214,207,196,0.55);
+          letter-spacing: 0.04em;
+          max-width: 460px;
+          margin: 0 auto 40px;
+        }
+        .newsletter-form {
+          display: flex;
+          max-width: 480px;
+          margin: 0 auto;
+          gap: 2px;
+        }
+        .newsletter-input {
+          flex: 1;
+          background: #111;
+          border: none;
+          outline: none;
+          color: var(--cream);
+          font-family: 'Tenor Sans', sans-serif;
+          font-size: 0.82rem;
+          letter-spacing: 0.04em;
+          padding: 16px 20px;
+          min-width: 0;
+          transition: background 0.3s ease;
+        }
+        .newsletter-input::placeholder {
+          color: rgba(214,207,196,0.22);
+        }
+        .newsletter-input:focus {
+          background: #161616;
+        }
+        .newsletter-submit {
+          background: var(--gold);
+          color: var(--black);
+          border: none;
+          font-family: 'Tenor Sans', sans-serif;
+          font-size: 0.64rem;
+          letter-spacing: 0.28em;
+          text-transform: uppercase;
+          padding: 16px 28px;
+          cursor: pointer;
+          white-space: nowrap;
+          flex-shrink: 0;
+          transition: background 0.35s ease, transform 0.3s ease;
+        }
+        .newsletter-submit:hover:not(:disabled) {
+          background: var(--gold-light);
+          transform: translateY(-1px);
+        }
+        .newsletter-submit:disabled {
+          opacity: 0.55;
+          cursor: not-allowed;
+          transform: none;
+        }
+        .newsletter-msg {
+          margin-top: 18px;
+          font-size: 0.74rem;
+          letter-spacing: 0.1em;
+          min-height: 1.2em;
+        }
+        .newsletter-msg.success { color: var(--gold-light); }
+        .newsletter-msg.error   { color: rgba(230,110,110,0.85); }
+
         /* ── FOOTER ── */
         footer {
           border-top: 1px solid rgba(184,154,106,0.12);
@@ -698,6 +845,10 @@ export default function Home() {
             padding: 80px 24px;
           }
           .about-visual { max-width: 420px; margin: 0 auto; }
+
+          .newsletter-section { padding: 72px 24px; }
+          .newsletter-form { flex-direction: column; }
+          .newsletter-submit { padding: 16px 20px; }
 
           footer { padding: 36px 24px; }
           .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
@@ -933,6 +1084,67 @@ export default function Home() {
         </div>
         </section>
       </main>
+
+      {/* NEWSLETTER */}
+      <section className="newsletter-section" aria-label="Newsletter signup">
+        <p className="newsletter-label">Newsletter</p>
+        <h2 className="newsletter-heading font-cormorant">Stay Connected</h2>
+        <div className="section-divider" style={{ maxWidth: "320px", margin: "24px auto 32px" }}>
+          <div className="section-divider-line" />
+          <span style={{ color: "var(--gold)", fontSize: "0.8rem" }}>✦</span>
+          <div className="section-divider-line" />
+        </div>
+        <p className="newsletter-body">
+          Subscribe for updates on new artwork, commissions, events, and releases.
+        </p>
+
+        {newsletterStatus === "success" ? (
+          <p className="newsletter-msg success" role="status">{newsletterMessage}</p>
+        ) : (
+          <form
+            className="newsletter-form"
+            onSubmit={handleNewsletterSubmit}
+            noValidate
+          >
+            {/* Mailchimp bot-protection honeypot — must remain hidden */}
+            <input
+              type="text"
+              name="b_e443753f70b903d7f28ff03cf_0c6345dad5"
+              tabIndex={-1}
+              aria-hidden="true"
+              defaultValue=""
+              style={{ position: "absolute", left: "-9999px" }}
+              readOnly
+            />
+            <label htmlFor="mce-EMAIL" style={{ position: "absolute", left: "-9999px" }}>
+              Email address
+            </label>
+            <input
+              id="mce-EMAIL"
+              name="EMAIL"
+              type="email"
+              className="newsletter-input"
+              placeholder="your@email.com"
+              value={newsletterEmail}
+              onChange={(e) => setNewsletterEmail(e.target.value)}
+              required
+              aria-label="Email address"
+              autoComplete="email"
+            />
+            <button
+              type="submit"
+              className="newsletter-submit"
+              disabled={newsletterStatus === "loading"}
+            >
+              {newsletterStatus === "loading" ? "Subscribing…" : "Subscribe"}
+            </button>
+          </form>
+        )}
+
+        {newsletterStatus === "error" && (
+          <p className="newsletter-msg error" role="alert">{newsletterMessage}</p>
+        )}
+      </section>
 
       {/* FOOTER */}
       <footer>
