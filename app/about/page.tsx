@@ -578,9 +578,8 @@ export default function About() {
           <Link href="/" className="footer-logo">Tarika Art</Link>
           <span className="footer-copy">© {new Date().getFullYear()} Tarika Art. All rights reserved.</span>
           <div className="footer-socials">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="#" target="_blank" rel="noopener noreferrer">Pinterest</a>
-            <a href="#" target="_blank" rel="noopener noreferrer">Behance</a>
+            <a href="https://instagram.com/tarikaart" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.facebook.com/tarikaart/" target="_blank" rel="noopener noreferrer">Facebook</a>
           </div>
         </div>
       </footer>

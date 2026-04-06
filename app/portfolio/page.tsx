@@ -362,7 +362,7 @@ export default function Portfolio() {
         <div className="commission-strip">
           <p className="pre">Available for commission</p>
           <h2>Interested in a custom piece?</h2>
-          <Link href="/contact" className="btn-primary">Inquire Now</Link>
+          <a href="https://forms.gle/EVYZKSUh8MyzwT4N9" target="_blank" rel="noopener noreferrer" className="btn-primary">Start Your Commission</a>
         </div>
       </main>
 
@@ -371,9 +371,8 @@ export default function Portfolio() {
           <Link href="/" className="footer-logo">Tarika Art</Link>
           <span className="footer-copy">© {new Date().getFullYear()} Tarika Art. All rights reserved.</span>
           <div className="footer-socials">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="#" target="_blank" rel="noopener noreferrer">Pinterest</a>
-            <a href="#" target="_blank" rel="noopener noreferrer">Behance</a>
+            <a href="https://instagram.com/tarikaart" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.facebook.com/tarikaart/" target="_blank" rel="noopener noreferrer">Facebook</a>
           </div>
         </div>
       </footer>

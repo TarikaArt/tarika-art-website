@@ -486,6 +486,72 @@ export default function Home() {
           margin-top: 72px;
         }
 
+        /* ── WORK WITH ME ── */
+        .services-section {
+          background: #070707;
+          border-top: 1px solid rgba(184,154,106,0.08);
+          border-bottom: 1px solid rgba(184,154,106,0.08);
+        }
+        .services {
+          padding: 120px 48px;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+        .services-header {
+          text-align: center;
+          margin-bottom: 80px;
+        }
+        .services-title {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(2rem, 4vw, 3.2rem);
+          font-weight: 300;
+          letter-spacing: 0.02em;
+          color: var(--cream);
+          margin-top: 14px;
+        }
+        .services-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2px;
+        }
+        .service-card {
+          padding: 64px 48px;
+          border: 1px solid rgba(184,154,106,0.08);
+          transition: border-color 0.45s ease, background 0.45s ease;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .service-card:hover {
+          border-color: rgba(184,154,106,0.24);
+          background: rgba(184,154,106,0.025);
+        }
+        .service-label {
+          font-size: 0.58rem;
+          letter-spacing: 0.42em;
+          text-transform: uppercase;
+          color: var(--gold);
+          margin-bottom: 20px;
+        }
+        .service-name {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(1.45rem, 2.2vw, 1.9rem);
+          font-weight: 300;
+          font-style: italic;
+          color: var(--cream);
+          letter-spacing: 0.02em;
+          line-height: 1.2;
+          margin-bottom: 20px;
+        }
+        .service-desc {
+          font-size: 0.84rem;
+          line-height: 1.95;
+          color: rgba(214,207,196,0.62);
+          letter-spacing: 0.04em;
+          margin-bottom: 40px;
+          flex: 1;
+        }
+
         /* ── ABOUT ── */
         .about {
           padding: 120px 48px;
@@ -621,6 +687,10 @@ export default function Home() {
           .works-grid { grid-template-columns: 1fr; gap: 12px; }
           .work-overlay { opacity: 1; }
           .work-overlay::before { width: 100%; }
+
+          .services { padding: 80px 24px; }
+          .services-grid { grid-template-columns: 1fr; }
+          .service-card { padding: 48px 32px; }
 
           .about {
             grid-template-columns: 1fr;
@@ -805,6 +875,63 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* WORK WITH ME */}
+        <section className="services-section">
+        <div className="services">
+          <div className="services-header">
+            <p className="section-label">Services</p>
+            <h2 className="services-title font-cormorant">Work With Me</h2>
+            <div className="section-divider" style={{ maxWidth: "320px", margin: "24px auto 0" }}>
+              <div className="section-divider-line" />
+              <span style={{ color: "var(--gold)", fontSize: "0.8rem" }}>✦</span>
+              <div className="section-divider-line" />
+            </div>
+          </div>
+
+          <div className="services-grid">
+            {[
+              {
+                label: "Commission",
+                name: "Custom Commissions",
+                desc: "Personalized artwork created to capture your vision, story, or moment in a lifelike and expressive style.",
+                btn: "Start Your Commission",
+                href: "https://forms.gle/EVYZKSUh8MyzwT4N9",
+              },
+              {
+                label: "Events",
+                name: "Live Painting",
+                desc: "Elevate your event with a live painting experience that captures the energy and atmosphere in real time.",
+                btn: "Book Live Painting",
+                href: "https://forms.gle/txe8pY8CpyHRfjyBA",
+              },
+              {
+                label: "Space",
+                name: "Murals",
+                desc: "Transform your space with custom mural work designed to make a bold and lasting visual statement.",
+                btn: "Request a Mural",
+                href: "https://forms.gle/cgk9M84Bv9PXBkHs7",
+              },
+              {
+                label: "Education",
+                name: "Private Painting Classes",
+                desc: "One-on-one or group painting sessions designed to help you learn, explore, and create with confidence.",
+                btn: "Book a Class",
+                href: "https://forms.gle/DkyBtXLq5MuAFhY57",
+              },
+            ].map(({ label, name, desc, btn, href }) => (
+              <div className="service-card" key={name}>
+                <p className="service-label">{label}</p>
+                <h3 className="service-name">{name}</h3>
+                <p className="service-desc">{desc}</p>
+                <a href={href} target="_blank" rel="noopener noreferrer" className="btn-outline">
+                  {btn}
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+        </section>
       </main>
 
       {/* FOOTER */}
@@ -813,9 +940,8 @@ export default function Home() {
           <span className="footer-logo">Tarika Art</span>
           <span className="footer-copy">© {new Date().getFullYear()} Tarika Art. All rights reserved.</span>
           <div className="footer-socials">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="#" target="_blank" rel="noopener noreferrer">Pinterest</a>
-            <a href="#" target="_blank" rel="noopener noreferrer">Behance</a>
+            <a href="https://instagram.com/tarikaart" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.facebook.com/tarikaart/" target="_blank" rel="noopener noreferrer">Facebook</a>
           </div>
         </div>
       </footer>

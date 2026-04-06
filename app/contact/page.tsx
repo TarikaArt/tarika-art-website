@@ -303,6 +303,57 @@ export default function Contact() {
           letter-spacing: 0.04em;
         }
 
+        /* ── COMMISSION CTA ── */
+        .commission-cta {
+          background: #070707;
+          border-top: 1px solid rgba(184,154,106,0.08);
+          border-bottom: 1px solid rgba(184,154,106,0.08);
+          padding: 96px 48px;
+          text-align: center;
+        }
+        .commission-cta-label {
+          font-size: 0.58rem;
+          letter-spacing: 0.44em;
+          text-transform: uppercase;
+          color: rgba(184,154,106,0.55);
+          margin-bottom: 28px;
+          display: block;
+        }
+        .commission-cta-heading {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+          font-weight: 300;
+          font-style: italic;
+          color: var(--cream);
+          letter-spacing: 0.02em;
+          line-height: 1.35;
+          margin-bottom: 24px;
+        }
+        .commission-cta-body {
+          font-size: 0.84rem;
+          line-height: 1.95;
+          color: rgba(214,207,196,0.62);
+          letter-spacing: 0.04em;
+          max-width: 520px;
+          margin: 0 auto 44px;
+        }
+        .btn-primary {
+          font-size: 0.68rem;
+          letter-spacing: 0.25em;
+          text-transform: uppercase;
+          padding: 16px 44px;
+          background: var(--gold);
+          color: var(--black);
+          text-decoration: none;
+          display: inline-block;
+          transition: background 0.35s ease, transform 0.3s ease, box-shadow 0.35s ease;
+        }
+        .btn-primary:hover {
+          background: var(--gold-light);
+          transform: translateY(-2px);
+          box-shadow: 0 12px 40px rgba(184,154,106,0.22);
+        }
+
         /* ── FOOTER ── */
         footer {
           border-top: 1px solid rgba(184,154,106,0.12);
@@ -357,6 +408,7 @@ export default function Contact() {
           }
           .form-row { grid-template-columns: 1fr; }
           .form-field-full { grid-column: span 1; }
+          .commission-cta { padding: 72px 24px; }
           footer { padding: 36px 24px; }
           .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
         }
@@ -383,6 +435,24 @@ export default function Contact() {
           <div className="header-rule" />
         </div>
 
+        <div className="commission-cta">
+          <span className="commission-cta-label">Custom Commission</span>
+          <h2 className="commission-cta-heading">
+            Let&apos;s create something<br />personal.
+          </h2>
+          <p className="commission-cta-body">
+            If you&apos;re interested in a custom artwork commission, I&apos;d love to hear more about your vision. Reach out to start the conversation.
+          </p>
+          <a
+            href="https://forms.gle/EVYZKSUh8MyzwT4N9"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary"
+          >
+            Start Your Commission
+          </a>
+        </div>
+
         <div className="contact-wrap">
           <div className="contact-info">
             <span className="section-label">Contact</span>
@@ -400,7 +470,7 @@ export default function Contact() {
               </div>
               <div className="contact-detail-item">
                 <p className="detail-label">Instagram</p>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="detail-value">@tarikaart</a>
+                <a href="https://instagram.com/tarikaart" target="_blank" rel="noopener noreferrer" className="detail-value">@tarikaart</a>
               </div>
               <div className="contact-detail-item">
                 <p className="detail-label">Location</p>
@@ -492,9 +562,8 @@ export default function Contact() {
           <Link href="/" className="footer-logo">Tarika Art</Link>
           <span className="footer-copy">© {new Date().getFullYear()} Tarika Art. All rights reserved.</span>
           <div className="footer-socials">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="#" target="_blank" rel="noopener noreferrer">Pinterest</a>
-            <a href="#" target="_blank" rel="noopener noreferrer">Behance</a>
+            <a href="https://instagram.com/tarikaart" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.facebook.com/tarikaart/" target="_blank" rel="noopener noreferrer">Facebook</a>
           </div>
         </div>
       </footer>
