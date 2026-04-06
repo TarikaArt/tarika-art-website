@@ -117,10 +117,10 @@ export default function About() {
           background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(184,154,106,0.05) 0%, transparent 70%);
         }
         .page-label {
-          font-size: 0.58rem;
-          letter-spacing: 0.48em;
+          font-size: 0.73rem;
+          letter-spacing: 0.38em;
           text-transform: uppercase;
-          color: rgba(184,154,106,0.6);
+          color: rgba(184,154,106,0.65);
           margin-bottom: 28px;
         }
         /* Name block */
@@ -230,8 +230,8 @@ export default function About() {
         /* Text column */
         .about-text { padding-top: 6px; }
         .section-label {
-          font-size: 0.56rem;
-          letter-spacing: 0.46em;
+          font-size: 0.73rem;
+          letter-spacing: 0.34em;
           text-transform: uppercase;
           color: var(--gold);
           margin-bottom: 22px;
@@ -306,10 +306,10 @@ export default function About() {
           margin: 0 auto 28px;
         }
         .statement-attr {
-          font-size: 0.58rem;
-          letter-spacing: 0.42em;
+          font-size: 0.75rem;
+          letter-spacing: 0.32em;
           text-transform: uppercase;
-          color: rgba(184,154,106,0.5);
+          color: rgba(184,154,106,0.6);
         }
 
         /* ── VALUES ── */
@@ -355,8 +355,8 @@ export default function About() {
           margin-bottom: 28px;
         }
         .value-name {
-          font-size: 0.6rem;
-          letter-spacing: 0.42em;
+          font-size: 0.73rem;
+          letter-spacing: 0.32em;
           text-transform: uppercase;
           color: var(--gold);
           margin-bottom: 18px;
@@ -376,16 +376,16 @@ export default function About() {
         }
         .about-cta p {
           font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(1.2rem, 2vw, 1.65rem);
+          font-size: clamp(1.4rem, 2.2vw, 1.8rem);
           font-weight: 300;
           font-style: italic;
-          color: rgba(214,207,196,0.7);
+          color: rgba(214,207,196,0.75);
           margin-bottom: 44px;
           letter-spacing: 0.03em;
         }
         .btn-outline {
-          font-size: 0.66rem;
-          letter-spacing: 0.28em;
+          font-size: 0.72rem;
+          letter-spacing: 0.26em;
           text-transform: uppercase;
           padding: 16px 48px;
           border: 1px solid rgba(184,154,106,0.4);
@@ -423,17 +423,17 @@ export default function About() {
           text-decoration: none;
         }
         .footer-copy {
-          font-size: 0.62rem;
-          letter-spacing: 0.15em;
-          color: rgba(214,207,196,0.4);
+          font-size: 0.73rem;
+          letter-spacing: 0.12em;
+          color: rgba(214,207,196,0.45);
         }
         .footer-socials {
           display: flex;
           gap: 28px;
         }
         .footer-socials a {
-          font-size: 0.62rem;
-          letter-spacing: 0.2em;
+          font-size: 0.73rem;
+          letter-spacing: 0.18em;
           text-transform: uppercase;
           color: rgba(214,207,196,0.45);
           text-decoration: none;

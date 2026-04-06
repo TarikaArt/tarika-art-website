@@ -341,11 +341,10 @@ export default function Home() {
         }
 
         .hero-eyebrow {
-          /* ★ TWEAK: eyebrow text size */
-          font-size: 0.62rem;
-          letter-spacing: 0.44em;
+          font-size: 0.73rem;
+          letter-spacing: 0.36em;
           text-transform: uppercase;
-          color: rgba(184,154,106,0.7);
+          color: rgba(184,154,106,0.75);
           margin-bottom: 44px;
           animation: fadeUp 1.1s 0.4s ease both;
         }
@@ -381,12 +380,11 @@ export default function Home() {
 
         .hero-sub {
           font-family: 'Cormorant Garamond', serif;
-          /* ★ TWEAK: hero subtext size */
-          font-size: clamp(1rem, 1.8vw, 1.25rem);
+          font-size: clamp(1.1rem, 2vw, 1.4rem);
           font-weight: 300;
           font-style: italic;
-          letter-spacing: 0.12em;
-          color: rgba(214,207,196,0.6);
+          letter-spacing: 0.1em;
+          color: rgba(214,207,196,0.65);
           margin-bottom: 68px;
           animation: fadeUp 1.1s 0.75s ease both;
         }
@@ -400,8 +398,8 @@ export default function Home() {
         }
 
         .btn-primary {
-          font-size: 0.68rem;
-          letter-spacing: 0.25em;
+          font-size: 0.72rem;
+          letter-spacing: 0.22em;
           text-transform: uppercase;
           padding: 16px 44px;
           background: var(--gold);
@@ -416,8 +414,8 @@ export default function Home() {
         }
 
         .btn-outline {
-          font-size: 0.68rem;
-          letter-spacing: 0.25em;
+          font-size: 0.72rem;
+          letter-spacing: 0.22em;
           text-transform: uppercase;
           padding: 15px 44px;
           border: 1px solid rgba(184,154,106,0.45);
@@ -444,10 +442,10 @@ export default function Home() {
           animation: fadeIn 2s 1.8s ease both;
         }
         .hero-scroll span {
-          font-size: 0.58rem;
-          letter-spacing: 0.3em;
+          font-size: 0.68rem;
+          letter-spacing: 0.28em;
           text-transform: uppercase;
-          color: rgba(240,235,227,0.3);
+          color: rgba(240,235,227,0.35);
         }
         .scroll-line {
           width: 1px;
@@ -458,9 +456,8 @@ export default function Home() {
 
         /* ── SECTION SHARED ── */
         .section-label {
-          /* ★ TWEAK: section label size */
-          font-size: 0.62rem;
-          letter-spacing: 0.4em;
+          font-size: 0.73rem;
+          letter-spacing: 0.32em;
           text-transform: uppercase;
           color: var(--gold);
           margin-bottom: 16px;
@@ -552,15 +549,15 @@ export default function Home() {
         .work-item:hover .work-overlay::before { width: 100%; }
 
         .work-overlay-medium {
-          font-size: 0.55rem;
-          letter-spacing: 0.38em;
+          font-size: 0.7rem;
+          letter-spacing: 0.3em;
           text-transform: uppercase;
           color: var(--gold);
           margin-bottom: 10px;
         }
         .work-overlay-title {
           font-family: 'Cormorant Garamond', serif;
-          font-size: 1.55rem;
+          font-size: 1.6rem;
           font-weight: 300;
           font-style: italic;
           color: var(--white);
@@ -568,10 +565,10 @@ export default function Home() {
           line-height: 1.2;
         }
         .work-overlay-year {
-          font-size: 0.55rem;
-          letter-spacing: 0.32em;
+          font-size: 0.7rem;
+          letter-spacing: 0.26em;
           text-transform: uppercase;
-          color: rgba(240,235,227,0.38);
+          color: rgba(240,235,227,0.45);
           margin-top: 8px;
         }
         .works-cta {
@@ -620,8 +617,8 @@ export default function Home() {
           background: rgba(184,154,106,0.025);
         }
         .service-label {
-          font-size: 0.58rem;
-          letter-spacing: 0.42em;
+          font-size: 0.73rem;
+          letter-spacing: 0.3em;
           text-transform: uppercase;
           color: var(--gold);
           margin-bottom: 20px;
@@ -695,8 +692,8 @@ export default function Home() {
           margin-bottom: 40px;
         }
         .link-underline {
-          font-size: 0.68rem;
-          letter-spacing: 0.25em;
+          font-size: 0.73rem;
+          letter-spacing: 0.22em;
           text-transform: uppercase;
           color: var(--gold);
           text-decoration: none;
@@ -718,10 +715,10 @@ export default function Home() {
           text-align: center;
         }
         .newsletter-label {
-          font-size: 0.62rem;
-          letter-spacing: 0.44em;
+          font-size: 0.73rem;
+          letter-spacing: 0.34em;
           text-transform: uppercase;
-          color: rgba(184,154,106,0.55);
+          color: rgba(184,154,106,0.6);
           margin-bottom: 24px;
           display: block;
         }
@@ -755,8 +752,8 @@ export default function Home() {
           outline: none;
           color: var(--cream);
           font-family: 'Tenor Sans', sans-serif;
-          font-size: 0.82rem;
-          letter-spacing: 0.04em;
+          font-size: 0.9rem;
+          letter-spacing: 0.03em;
           padding: 16px 20px;
           min-width: 0;
           transition: background 0.3s ease;
@@ -772,8 +769,8 @@ export default function Home() {
           color: var(--black);
           border: none;
           font-family: 'Tenor Sans', sans-serif;
-          font-size: 0.64rem;
-          letter-spacing: 0.28em;
+          font-size: 0.72rem;
+          letter-spacing: 0.22em;
           text-transform: uppercase;
           padding: 16px 28px;
           cursor: pointer;
@@ -792,8 +789,8 @@ export default function Home() {
         }
         .newsletter-msg {
           margin-top: 18px;
-          font-size: 0.74rem;
-          letter-spacing: 0.1em;
+          font-size: 0.85rem;
+          letter-spacing: 0.06em;
           min-height: 1.2em;
         }
         .newsletter-msg.success { color: var(--gold-light); }
@@ -822,14 +819,14 @@ export default function Home() {
           color: var(--cream-muted);
         }
         .footer-copy {
-          font-size: 0.62rem;
-          letter-spacing: 0.15em;
-          color: rgba(214,207,196,0.4);
+          font-size: 0.73rem;
+          letter-spacing: 0.12em;
+          color: rgba(214,207,196,0.45);
         }
         .footer-socials { display: flex; gap: 28px; }
         .footer-socials a {
-          font-size: 0.62rem;
-          letter-spacing: 0.2em;
+          font-size: 0.73rem;
+          letter-spacing: 0.18em;
           text-transform: uppercase;
           color: rgba(214,207,196,0.45);
           text-decoration: none;
@@ -1008,17 +1005,17 @@ export default function Home() {
           line-height: 1;
         }
         .shop-card-label {
-          font-size: 0.6rem;
-          letter-spacing: 0.38em;
+          font-size: 0.73rem;
+          letter-spacing: 0.3em;
           text-transform: uppercase;
           color: var(--gold);
-          margin-bottom: 10px;
+          margin-bottom: 12px;
         }
         .shop-card-desc {
-          font-size: 0.8rem;
-          line-height: 1.75;
-          color: rgba(214,207,196,0.5);
-          letter-spacing: 0.03em;
+          font-size: 0.88rem;
+          line-height: 1.8;
+          color: rgba(214,207,196,0.55);
+          letter-spacing: 0.02em;
         }
 
         /* ── NEWSLETTER POPUP ── */
@@ -1059,10 +1056,10 @@ export default function Home() {
         }
         .popup-close:hover { color: var(--gold); }
         .popup-label {
-          font-size: 0.58rem;
-          letter-spacing: 0.44em;
+          font-size: 0.73rem;
+          letter-spacing: 0.34em;
           text-transform: uppercase;
-          color: rgba(184,154,106,0.55);
+          color: rgba(184,154,106,0.6);
           margin-bottom: 24px;
           display: block;
         }
@@ -1076,9 +1073,9 @@ export default function Home() {
           line-height: 1.2;
         }
         .popup-body {
-          font-size: 0.88rem;
+          font-size: 0.92rem;
           line-height: 1.9;
-          color: rgba(214,207,196,0.6);
+          color: rgba(214,207,196,0.65);
           letter-spacing: 0.03em;
           max-width: 360px;
           margin: 0 auto 32px;
@@ -1096,8 +1093,8 @@ export default function Home() {
           outline: none;
           color: var(--cream);
           font-family: 'Tenor Sans', sans-serif;
-          font-size: 0.85rem;
-          letter-spacing: 0.04em;
+          font-size: 0.9rem;
+          letter-spacing: 0.03em;
           padding: 16px 20px;
           width: 100%;
           transition: background 0.3s ease;
@@ -1109,8 +1106,8 @@ export default function Home() {
           color: var(--black);
           border: none;
           font-family: 'Tenor Sans', sans-serif;
-          font-size: 0.66rem;
-          letter-spacing: 0.28em;
+          font-size: 0.72rem;
+          letter-spacing: 0.22em;
           text-transform: uppercase;
           padding: 17px 24px;
           cursor: pointer;
@@ -1124,8 +1121,8 @@ export default function Home() {
         .popup-submit:disabled { opacity: 0.55; cursor: not-allowed; }
         .popup-msg {
           margin-top: 16px;
-          font-size: 0.78rem;
-          letter-spacing: 0.1em;
+          font-size: 0.85rem;
+          letter-spacing: 0.06em;
         }
         .popup-msg.success { color: var(--gold-light); }
         .popup-msg.error { color: rgba(230,110,110,0.85); }
@@ -1138,8 +1135,8 @@ export default function Home() {
         .popup-skip {
           display: block;
           margin-top: 20px;
-          font-size: 0.6rem;
-          letter-spacing: 0.22em;
+          font-size: 0.7rem;
+          letter-spacing: 0.2em;
           text-transform: uppercase;
           color: rgba(214,207,196,0.3);
           cursor: pointer;

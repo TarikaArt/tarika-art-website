@@ -107,8 +107,8 @@ export default function Contact() {
           background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(184,154,106,0.06) 0%, transparent 70%);
         }
         .page-label {
-          font-size: 0.6rem;
-          letter-spacing: 0.42em;
+          font-size: 0.73rem;
+          letter-spacing: 0.34em;
           text-transform: uppercase;
           color: rgba(184,154,106,0.65);
           margin-bottom: 20px;
@@ -147,8 +147,8 @@ export default function Contact() {
         /* Left info panel */
         .contact-info {}
         .section-label {
-          font-size: 0.58rem;
-          letter-spacing: 0.42em;
+          font-size: 0.73rem;
+          letter-spacing: 0.32em;
           text-transform: uppercase;
           color: var(--gold);
           margin-bottom: 20px;
@@ -178,15 +178,15 @@ export default function Contact() {
         .contact-details { display: flex; flex-direction: column; gap: 32px; }
         .contact-detail-item {}
         .detail-label {
-          font-size: 0.55rem;
-          letter-spacing: 0.4em;
+          font-size: 0.7rem;
+          letter-spacing: 0.3em;
           text-transform: uppercase;
-          color: rgba(184,154,106,0.55);
+          color: rgba(184,154,106,0.6);
           margin-bottom: 8px;
         }
         .detail-value {
-          font-size: 0.85rem;
-          letter-spacing: 0.04em;
+          font-size: 0.92rem;
+          letter-spacing: 0.03em;
           color: var(--cream-muted);
           text-decoration: none;
           transition: color 0.3s ease;
@@ -215,10 +215,10 @@ export default function Contact() {
           margin-bottom: 2px;
         }
         .form-field label {
-          font-size: 0.55rem;
-          letter-spacing: 0.38em;
+          font-size: 0.7rem;
+          letter-spacing: 0.3em;
           text-transform: uppercase;
-          color: rgba(184,154,106,0.55);
+          color: rgba(184,154,106,0.6);
           padding: 16px 20px 0;
           background: #111;
         }
@@ -230,8 +230,8 @@ export default function Contact() {
           outline: none;
           color: var(--cream);
           font-family: 'Tenor Sans', sans-serif;
-          font-size: 0.85rem;
-          letter-spacing: 0.03em;
+          font-size: 0.92rem;
+          letter-spacing: 0.025em;
           padding: 10px 20px 16px;
           width: 100%;
           transition: background 0.3s ease;
@@ -263,8 +263,8 @@ export default function Contact() {
           color: var(--black);
           border: none;
           font-family: 'Tenor Sans', sans-serif;
-          font-size: 0.68rem;
-          letter-spacing: 0.28em;
+          font-size: 0.72rem;
+          letter-spacing: 0.22em;
           text-transform: uppercase;
           padding: 20px 48px;
           cursor: pointer;
@@ -297,10 +297,10 @@ export default function Contact() {
           margin-bottom: 16px;
         }
         .confirm-body {
-          font-size: 0.82rem;
-          line-height: 1.9;
+          font-size: 0.92rem;
+          line-height: 1.95;
           color: var(--cream-muted);
-          letter-spacing: 0.04em;
+          letter-spacing: 0.03em;
         }
 
         /* ── COMMISSION CTA ── */
@@ -312,10 +312,10 @@ export default function Contact() {
           text-align: center;
         }
         .commission-cta-label {
-          font-size: 0.58rem;
-          letter-spacing: 0.44em;
+          font-size: 0.73rem;
+          letter-spacing: 0.34em;
           text-transform: uppercase;
-          color: rgba(184,154,106,0.55);
+          color: rgba(184,154,106,0.6);
           margin-bottom: 28px;
           display: block;
         }
@@ -378,17 +378,17 @@ export default function Contact() {
           text-decoration: none;
         }
         .footer-copy {
-          font-size: 0.62rem;
-          letter-spacing: 0.15em;
-          color: rgba(214,207,196,0.4);
+          font-size: 0.73rem;
+          letter-spacing: 0.12em;
+          color: rgba(214,207,196,0.45);
         }
         .footer-socials {
           display: flex;
           gap: 28px;
         }
         .footer-socials a {
-          font-size: 0.62rem;
-          letter-spacing: 0.2em;
+          font-size: 0.73rem;
+          letter-spacing: 0.18em;
           text-transform: uppercase;
           color: rgba(214,207,196,0.45);
           text-decoration: none;

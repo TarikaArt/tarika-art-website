@@ -104,8 +104,8 @@ export default function Portfolio() {
           background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(184,154,106,0.06) 0%, transparent 70%);
         }
         .page-label {
-          font-size: 0.6rem;
-          letter-spacing: 0.42em;
+          font-size: 0.73rem;
+          letter-spacing: 0.34em;
           text-transform: uppercase;
           color: rgba(184,154,106,0.65);
           margin-bottom: 20px;
@@ -179,15 +179,15 @@ export default function Portfolio() {
         }
         .gallery-item:hover .gallery-overlay { opacity: 1; }
         .overlay-medium {
-          font-size: 0.55rem;
-          letter-spacing: 0.38em;
+          font-size: 0.7rem;
+          letter-spacing: 0.3em;
           text-transform: uppercase;
           color: var(--gold);
           margin-bottom: 8px;
         }
         .overlay-title {
           font-family: 'Cormorant Garamond', serif;
-          font-size: 1.45rem;
+          font-size: 1.5rem;
           font-weight: 300;
           font-style: italic;
           color: var(--white);
@@ -201,15 +201,15 @@ export default function Portfolio() {
           align-items: center;
         }
         .overlay-year {
-          font-size: 0.55rem;
-          letter-spacing: 0.3em;
+          font-size: 0.7rem;
+          letter-spacing: 0.26em;
           text-transform: uppercase;
-          color: rgba(240,235,227,0.38);
+          color: rgba(240,235,227,0.45);
         }
         .overlay-size {
-          font-size: 0.55rem;
-          letter-spacing: 0.2em;
-          color: rgba(240,235,227,0.28);
+          font-size: 0.7rem;
+          letter-spacing: 0.18em;
+          color: rgba(240,235,227,0.35);
         }
 
         /* Commission strip */
@@ -221,10 +221,10 @@ export default function Portfolio() {
           text-align: center;
         }
         .commission-strip p.pre {
-          font-size: 0.6rem;
-          letter-spacing: 0.4em;
+          font-size: 0.73rem;
+          letter-spacing: 0.32em;
           text-transform: uppercase;
-          color: rgba(184,154,106,0.55);
+          color: rgba(184,154,106,0.6);
           margin-bottom: 24px;
         }
         .commission-strip h2 {
@@ -237,8 +237,8 @@ export default function Portfolio() {
           letter-spacing: 0.02em;
         }
         .btn-primary {
-          font-size: 0.68rem;
-          letter-spacing: 0.25em;
+          font-size: 0.72rem;
+          letter-spacing: 0.22em;
           text-transform: uppercase;
           padding: 16px 44px;
           background: var(--gold);
@@ -311,17 +311,17 @@ export default function Portfolio() {
           text-decoration: none;
         }
         .footer-copy {
-          font-size: 0.62rem;
-          letter-spacing: 0.15em;
-          color: rgba(214,207,196,0.4);
+          font-size: 0.73rem;
+          letter-spacing: 0.12em;
+          color: rgba(214,207,196,0.45);
         }
         .footer-socials {
           display: flex;
           gap: 28px;
         }
         .footer-socials a {
-          font-size: 0.62rem;
-          letter-spacing: 0.2em;
+          font-size: 0.73rem;
+          letter-spacing: 0.18em;
           text-transform: uppercase;
           color: rgba(214,207,196,0.45);
           text-decoration: none;
