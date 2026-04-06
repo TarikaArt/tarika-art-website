@@ -466,7 +466,7 @@ export default function Contact() {
             <div className="contact-details">
               <div className="contact-detail-item">
                 <p className="detail-label">Email</p>
-                <a href="mailto:hello@tarikaart.com" className="detail-value">hello@tarikaart.com</a>
+                <a href="mailto:tarika.artist@gmail.com" className="detail-value">tarika.artist@gmail.com</a>
               </div>
               <div className="contact-detail-item">
                 <p className="detail-label">Instagram</p>
